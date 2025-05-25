@@ -107,7 +107,7 @@ class StoreServiceTest {
 //     *
 //     * Печалбата се изчислява като разлика между приходите от продажби и разходите
 //     * (заплати на касиери + разходи за доставка).
-//     */
+//
     @Test
     void testCalculateStoreProfit() {
         // Add some cashiers
