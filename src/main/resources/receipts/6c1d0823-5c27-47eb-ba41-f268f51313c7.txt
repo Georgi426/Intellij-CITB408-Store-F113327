@@ -1,0 +1,6 @@
+Receipt {
+  serialNumber = '6c1d0823-5c27-47eb-ba41-f268f51313c7'
+  cashier = Cashier { id = '9437f31c-ba86-4a72-872c-a9886e2de99d', name = 'Ben', monthlySalary = 2000 }
+  issueDate = 2025-05-22
+  stoka = {}
+}

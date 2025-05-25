@@ -1,0 +1,22 @@
+plugins {
+    id 'java'
+}
+
+compileJava.options.encoding = 'UTF-8'
+compileTestJava.options.encoding = 'UTF-8'
+
+tasks.withType(JavaExec) {
+    systemProperty "file.encoding", "UTF-8"
+}
+
+dependencies {
+    // Your existing dependencies here
+
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.9.3'
+}
+test {
+    useJUnitPlatform()
+}
+repositories {
+    mavenCentral()
+}
