@@ -24,19 +24,21 @@ public class Main {
         } catch (Exception e) {
             System.err.println("Error setting up UTF-8 output: " + e.getMessage());
         }
-        
-        System.out.println("============================================");
-        System.out.println("Starting store application with UTF-8 encoding");
-        System.out.println("============================================");
+
+
             // Проверяваме дали днешната дата е правилно настроена
+
+            System.out.println("============================================");
             System.out.println("Днешна дата: " + LocalDate.now());
             System.out.println("============================================");
-            
+
             // Създаваме служител в магазина (касиер) на име Бен със заплата 2000
+
             Cashier cashier1 = new Cashier("Ben", new BigDecimal(2000));
 
             // Задаваме марж на печалба за различните категории продукти
             // Хранителните стоки имат 10% надценка, а нехранителните имат 15% надценка
+
             EnumMap<StokaCategory, Double> marginByCategory = new EnumMap<>(StokaCategory.class);
             marginByCategory.put(StokaCategory.FOOD, 10.0);
             marginByCategory.put(StokaCategory.NONFOOD, 15.0);
@@ -45,25 +47,27 @@ public class Main {
 
             // Задаваме срок на годност 15 май 2024 г. за нашите продукти
             LocalDate expDate = LocalDate.of(2024, 5, 15);
-            
+
             // Проверяваме дали срокът на годност е валиден (в бъдещето)
             LocalDate currentDate = LocalDate.now();
             if (expDate.isBefore(currentDate)) {
-                System.out.println("ВНИМАНИЕ: Зададеният срок на годност е в миналото!");
+
                 System.out.println("Автоматично коригиране на срока...");
                 // Коригираме срока на 1 година напред от днес
                 expDate = currentDate.plusYears(1);
                 System.out.println("Нов срок на годност: " + expDate);
+
             }
-            
+        System.out.println("============================================");
+
             // Създаваме два продукта: замразен грах (струва 5, продава се за 10) и тетрадка (струва 15, продава се за 20)
             Stoka stoka1 = new Stoka("001", "Замразен грах", new BigDecimal(5), new BigDecimal(10), expDate, StokaCategory.FOOD);
-            Stoka stoka2 = new Stoka("002", "Тетрадка", new BigDecimal(15), new BigDecimal(20), expDate, StokaCategory.NONFOOD);
-            
+            Stoka stoka2 = new Stoka("002", "Тетрадка", new BigDecimal(15), new BigDecimal(20),expDate, StokaCategory.NONFOOD);
+
             // Проверяваме дали продуктите са с валиден срок на годност
-            System.out.println("Проверка на срок на годност за " + stoka1.getName() + ": " + 
+            System.out.println("Проверка на срок на годност за " + stoka1.getName() + ": " +
                               (stoka1.isValid() ? "Валиден" : "Невалиден"));
-            System.out.println("Проверка на срок на годност за " + stoka2.getName() + ": " + 
+            System.out.println("Проверка на срок на годност за " + stoka2.getName() + ": " +
                               (stoka2.isValid() ? "Валиден" : "Невалиден"));
 
             // Създаваме услуга за управление на операциите в магазина
