@@ -5,9 +5,10 @@ import org.store.enums.StokaCategory;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
+import java.util.UUID;
 
 public class Stoka {
-    private String id;
+    private UUID id;
     private String name;
     private BigDecimal deliveryPrice;
     private BigDecimal price;
@@ -16,7 +17,7 @@ public class Stoka {
 
     public Stoka(String id, String name, BigDecimal deliveryPrice, BigDecimal price,
                  LocalDate expirationDate, StokaCategory stokaCategory) {
-        this.id = id;
+        this.id = UUID.randomUUID();
         this.name = name;
         this.deliveryPrice = deliveryPrice;
         this.price = price;
