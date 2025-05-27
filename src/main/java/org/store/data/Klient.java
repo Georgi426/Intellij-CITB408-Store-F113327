@@ -22,33 +22,36 @@ public class Klient {
         return money;
     }
 
-    public void addToCart(Stoka stoka, double quantity) {
-        // First check if the item is not expired
-        LocalDate todayDate = LocalDate.now();
-        LocalDate expirationDate = stoka.getExpirationDate();
-        
-        boolean isNotExpired = expirationDate.isAfter(todayDate);
-        
-        // We only add non-expired items
-        if (isNotExpired == true) {
-            // Check if we already have this item in the cart
-            if (this.cart.containsKey(stoka)) {
-                // If yes, get the current quantity
-                double oldQuantity = this.cart.get(stoka);
-                // Add the new quantity
-                double newQuantity = oldQuantity + quantity;
-                // Update the cart
-                this.cart.put(stoka, newQuantity);
-                System.out.println("Added " + quantity + " more of " + stoka.getName() + " to cart!");
-            } else {
-                // If not, just add it with the given quantity
-                this.cart.put(stoka, quantity);
-                System.out.println("Added " + stoka.getName() + " to cart for the first time!");
-            }
-        } else {
-            // If expired, print a message
-            System.out.println("Cannot add expired item to cart: " + stoka.getName());
+    public void subtractMoney(BigDecimal amount) {
+        if (amount.compareTo(BigDecimal.ZERO) < 0) {
+            throw new IllegalArgumentException("Сумата трябва да е положителна.");
         }
+
+        if (money.compareTo(amount) >= 0) {
+            this.money = this.money.subtract(amount);
+        } else {
+            throw new RuntimeException("Недостатъчно средства за покупка.");
+        }
+    }
+
+    public void addToCart(Stoka stoka, double quantity) {
+        if (quantity <= 0) {
+            System.out.println("Невалидно количество.");
+            return;
+        }
+
+        LocalDate todayDate = LocalDate.now();
+        if (stoka.getExpirationDate().isBefore(todayDate)) {
+            System.out.println("Не може да добавите изтекла стока: " + stoka.getName());
+            return;
+        }
+
+        cart.merge(stoka, quantity, Double::sum);
+        System.out.println("Добавени в количката: " + quantity + " бр. от " + stoka.getName());
+    }
+
+    public void clearCart() {
+        cart.clear();
     }
 
     @Override

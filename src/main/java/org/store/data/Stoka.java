@@ -59,19 +59,20 @@ public class Stoka {
                 ", stokaCategory=" + stokaCategory +
                 '}';
     }
-    
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Stoka stoka = (Stoka) o;
-        return id.equals(stoka.id) && name.equals(stoka.name);
+        return Objects.equals(id, stoka.id);
     }
-    
+
     @Override
     public int hashCode() {
-        return Objects.hash(id, name);
+        return Objects.hash(id);
     }
+
     
     /**
      * Проверява дали продуктът е с изтекъл срок на годност

@@ -101,14 +101,14 @@ public class StoreService {
         // And also add it to the store's inventory
         this.store.addToInventory(stoka);
 
-        // Let's print something so we know it worked!
-        System.out.println("!!! DELIVERED NEW ITEM !!!");
-        System.out.println("Item name: " + stoka.getName());
-        System.out.println("Item price: " + stoka.getPrice() + " lv");
-        System.out.println("Expiration date: " + stoka.getExpirationDate());
-        System.out.println("Is expired: " + (stoka.isExpired() ? "YES" : "NO"));
-        System.out.println("Current inventory count: " + this.store.getInventory().getOrDefault(stoka, 0.0));
-        System.out.println("------------------------");
+//        // Let's print something so we know it worked!
+//        System.out.println("!!! DELIVERED NEW ITEM !!!");
+//        System.out.println("Item name: " + stoka.getName());
+//        System.out.println("Item price: " + stoka.getPrice() + " lv");
+//        System.out.println("Expiration date: " + stoka.getExpirationDate());
+//        System.out.println("Is expired: " + (stoka.isExpired() ? "YES" : "NO"));
+//        System.out.println("Current inventory count: " + this.store.getInventory().getOrDefault(stoka, 0.0));
+//        System.out.println("------------------------");
     }
 
     public void removeFromInventory(Map<Stoka, Double> sold) {

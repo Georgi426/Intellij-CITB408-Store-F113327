@@ -6,6 +6,7 @@ import org.store.exceptions.NotEnoughStokaAvailableException;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
@@ -19,31 +20,33 @@ public class KasaService {
     }
 
     public Receipt checkout(Klient klient) {
-        // Check if there's enough stock in inventory
+        // Проверка за наличности
         validateStokaAvailability(klient.getCart());
 
-        // Calculate total price
+        // Изчисляване на общата цена
         BigDecimal totalPrice = calculateTotalPrice(klient.getCart());
 
-        // Check if client has enough money
+        // Проверка за достатъчно пари
         if (klient.getMoney().compareTo(totalPrice) < 0) {
-            throw new NotEnoughMoneyException("Client doesn't have enough money. Required: " + totalPrice + ", Available: " + klient.getMoney());
+            throw new NotEnoughMoneyException("Недостатъчно средства. Необходими: " + totalPrice + " лв., Налични: " + klient.getMoney() + " лв.");
         }
 
-        // Generate receipt
+        // Генериране на касов номер и бележка
         String serialNumber = generateReceiptNumber();
         Cashier cashier = this.kasa.getCashier();
         LocalDate issueDate = LocalDate.now();
-        
-        Receipt receipt = new Receipt(serialNumber, cashier, issueDate, klient.getCart());
+        Receipt receipt = new Receipt(serialNumber, cashier, issueDate, new HashMap<>(klient.getCart()));
 
-        // Update store inventory
+        // Актуализация на склада и продадените артикули
         this.storeService.removeFromInventory(klient.getCart());
-        
-        // Add sold items to store's records
         this.storeService.addSoldStoka(klient.getCart());
 
-        // Return receipt
+        // Касата приема парите
+        klient.subtractMoney(totalPrice);
+
+        // Изчистване на количката след покупка
+        klient.clearCart();
+
         return receipt;
     }
 
@@ -57,7 +60,7 @@ public class KasaService {
             if (!inventory.containsKey(stoka)) {
                 throw new NotEnoughStokaAvailableException(stoka.getName(), requestedQuantity);
             }
-            
+
             Double availableQuantity = inventory.get(stoka);
             if (availableQuantity < requestedQuantity) {
                 throw new NotEnoughStokaAvailableException(stoka.getName(), requestedQuantity - availableQuantity);
@@ -83,7 +86,6 @@ public class KasaService {
     }
 
     private String generateReceiptNumber() {
-        // Generate a unique receipt number using UUID
         return UUID.randomUUID().toString().substring(0, 8).toUpperCase();
     }
 
@@ -91,5 +93,3 @@ public class KasaService {
         return this.kasa.getCashier().getName();
     }
 }
-
-

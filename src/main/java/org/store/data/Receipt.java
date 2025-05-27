@@ -2,6 +2,7 @@ package org.store.data;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Map;
 
 public class Receipt {
@@ -15,6 +16,9 @@ public class Receipt {
         this.cashier = cashier;
         this.issueDate = issueDate;
         this.stoka = stoka;
+    }
+
+    public Receipt(int i, Cashier cashier, Map<Stoka, Double> stoki, LocalDateTime now) {
     }
 
     public String getSerialNumber() {
