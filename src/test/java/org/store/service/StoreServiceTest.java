@@ -33,11 +33,6 @@ class StoreServiceTest {
         stokaNonFood = new Stoka("002", "Тетрадка", new BigDecimal("15.00"), new BigDecimal("20.00"), expDate, StokaCategory.NONFOOD);
     }
 
-    /**
-     * Тестът проверява правилното изчисляване на цена с надценка за различни категории стоки.
-     * Тестват се две различни категории - хранителни и нехранителни продукти, 
-     * като се проверява дали се прилага правилният процент надценка за всяка категория.
-     */
 //    @Test
 //    void testCalculatePriceWithMargin() {
 //        BigDecimal newPriceFood = storeService.deliverStokaReturnPriceWithMargin(stokaFood);
@@ -47,12 +42,6 @@ class StoreServiceTest {
 //        assertEquals(new BigDecimal("17.25"), newPriceNonFood); // 15 + 15%
 //    }
 
-    /**
-     * Тестът проверява функционалността за валидиране и коригиране на срока на годност на стоките.
-     * Проверява се обработката на два случая:
-     * 1. Продукт с изтекъл срок на годност - очаква се коригиране на датата и връщане на false
-     * 2. Продукт с валиден срок на годност - очаква се връщане на true без промяна на датата
-     */
     @Test
     void testValidateAndFixExpirationDate() {
         // Expired product
@@ -66,10 +55,6 @@ class StoreServiceTest {
         assertTrue(valid2);
     }
 
-    /**
-     * Тестът проверява дали продадените стоки се добавят правилно към списъка с продажби на магазина.
-     * Проверява се дали стоката с правилното количество се записва в картата на продадените стоки.
-     */
     @Test
     void testAddSoldStoka() {
         Map<Stoka, Double> soldMap = new HashMap<>();
@@ -79,11 +64,6 @@ class StoreServiceTest {
         assertEquals(3.0, store.getSoldStoka().get(stokaFood));
     }
 
-    /**
-     * Тестът проверява дали методът правилно намалява количеството на стоки в инвентара
-     * при продажба. Първо се добавят 3 единици от продукт в инвентара, след което се
-     * симулира продажба на 2 единици и се проверява дали в инвентара остава 1 единица.
-     */
     @Test
     void testRemoveFromInventory() {
         // Add items first

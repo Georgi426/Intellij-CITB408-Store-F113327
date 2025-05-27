@@ -19,11 +19,9 @@ public class CashierService {
         this.cashierReceipts = new HashMap<>();
     }
     
-    /**
-     * Регистрира касова бележка към касиер
-     * @param cashier касиер
-     * @param receipt касова бележка
-     */
+//
+//    Регистрира касова бележка към касиер
+
     public void registerReceipt(Cashier cashier, Receipt receipt) {
         String cashierId = cashier.getId();
         
@@ -34,21 +32,21 @@ public class CashierService {
         cashierReceipts.get(cashierId).add(receipt);
     }
     
-    /**
-     * Връща всички бележки, издадени от касиер
-     * @param cashier касиер
-     * @return списък с бележки
-     */
+//
+//      Връща всички бележки, издадени от касиер
+//
+//      return списък с бележки
+//
     public List<Receipt> getCashierReceipts(Cashier cashier) {
         String cashierId = cashier.getId();
         return cashierReceipts.getOrDefault(cashierId, new ArrayList<>());
     }
     
-    /**
-     * Изчислява общата стойност на продажбите на касиер
-     * @param cashier касиер
-     * @return общата стойност
-     */
+//
+//     Изчислява общата стойност на продажбите на касиер
+//
+//     return общата стойност
+//
     public BigDecimal calculateTotalSales(Cashier cashier) {
         List<Receipt> receipts = getCashierReceipts(cashier);
         BigDecimal total = BigDecimal.ZERO;
@@ -61,24 +59,24 @@ public class CashierService {
         return total;
     }
     
-    /**
-     * Изчислява бонус за касиер, базиран на продажбите
-     * @param cashier касиер
-     * @param percentOfSales процент от продажбите за бонус
-     * @return сума на бонуса
-     */
+//
+//     Изчислява бонус за касиер, базиран на продажбите
+//
+//
+//      return сума на бонуса
+//
+
     public BigDecimal calculateBonus(Cashier cashier, double percentOfSales) {
         BigDecimal totalSales = calculateTotalSales(cashier);
         return totalSales.multiply(BigDecimal.valueOf(percentOfSales / 100))
                 .setScale(2, RoundingMode.HALF_UP);
     }
     
-    /**
-     * Изчислява общата месечна заплата на касиер, включително бонуси
-     * @param cashier касиер
-     * @param percentOfSales процент от продажбите за бонус
-     * @return обща заплата
-     */
+//
+//      Изчислява общата месечна заплата на касиер, включително бонуси
+//
+//      return обща заплата
+//
     public BigDecimal calculateTotalSalary(Cashier cashier, double percentOfSales) {
         BigDecimal baseSalary = cashier.getMonthlySalary();
         BigDecimal bonus = calculateBonus(cashier, percentOfSales);
@@ -86,12 +84,11 @@ public class CashierService {
         return baseSalary.add(bonus).setScale(2, RoundingMode.HALF_UP);
     }
     
-    /**
-     * Връща бележките, издадени от касиер в определен ден
-     * @param cashier касиер
-     * @param date дата
-     * @return списък с бележки
-     */
+//
+//      Връща бележките, издадени от касиер в определен ден
+//
+//      return списък с бележки
+//
     public List<Receipt> getReceiptsByDate(Cashier cashier, LocalDate date) {
         List<Receipt> cashierReceipts = getCashierReceipts(cashier);
         List<Receipt> filteredReceipts = new ArrayList<>();
@@ -105,11 +102,11 @@ public class CashierService {
         return filteredReceipts;
     }
     
-    /**
-     * Изчислява средна стойност на бележка за касиер
-     * @param cashier касиер
-     * @return средна стойност
-     */
+//
+//     Изчислява средна стойност на бележка за касиер
+//
+//     return средна стойност
+//
     public BigDecimal calculateAverageReceiptValue(Cashier cashier) {
         List<Receipt> receipts = getCashierReceipts(cashier);
         
@@ -121,21 +118,19 @@ public class CashierService {
         return totalValue.divide(BigDecimal.valueOf(receipts.size()), 2, RoundingMode.HALF_UP);
     }
     
-    /**
-     * Връща брой бележки, издадени от касиер
-     * @param cashier касиер
-     * @return брой бележки
-     */
+//
+//      Връща брой бележки, издадени от касиер
+//      return брой бележки
+//
     public int getReceiptCount(Cashier cashier) {
         return getCashierReceipts(cashier).size();
     }
     
-    /**
-     * Изчислява производителност на касиер (продажби на час)
-     * @param cashier касиер
-     * @param hoursWorked отработени часове
-     * @return производителност
-     */
+//
+//      Изчислява производителност на касиер (продажби на час)
+//      hoursWorked отработени часове
+//      return производителност
+//
     public BigDecimal calculatePerformance(Cashier cashier, int hoursWorked) {
         if (hoursWorked <= 0) {
             throw new IllegalArgumentException("Часовете трябва да са положително число");
@@ -145,12 +140,12 @@ public class CashierService {
         return totalSales.divide(BigDecimal.valueOf(hoursWorked), 2, RoundingMode.HALF_UP);
     }
     
-    /**
-     * Изчислява данък върху заплатата на касиер
-     * @param cashier касиер
-     * @param taxRate данъчна ставка (в проценти)
-     * @return сума на данъка
-     */
+//
+//      Изчислява данък върху заплатата на касиер
+//      taxRate данъчна ставка (в проценти)
+//      return сума на данъка
+//
+
     public BigDecimal calculateIncomeTax(Cashier cashier, double taxRate) {
         BigDecimal salary = cashier.getMonthlySalary();
         return salary.multiply(BigDecimal.valueOf(taxRate / 100))

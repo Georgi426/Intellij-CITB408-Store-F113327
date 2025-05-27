@@ -74,45 +74,23 @@ public class Stoka {
         return Objects.hash(id);
     }
 
-    
-    /**
-     * Проверява дали продуктът е с изтекъл срок на годност
-     * @return true ако продуктът е с изтекъл срок, false ако не е
-     */
     public boolean isExpired() {
-        // Вземаме днешната дата
         LocalDate today = LocalDate.now();
-        
-        // Вземаме срока на годност
         LocalDate expDate = this.expirationDate;
-        
-        // Проверяваме дали срокът на годност е преди днешната дата
-        // Ако е преди днес, значи е изтекъл
         boolean isBeforeToday = expDate.isBefore(today);
-        
-        // Ако срокът на годност е преди днес, продуктът е изтекъл
+
         if (isBeforeToday == true) {
             System.out.println("ВНИМАНИЕ: Продуктът " + this.name + " е с изтекъл срок на годност!");
             return true;
         }
-        
-        // В противен случай, продуктът не е изтекъл
+
         return false;
     }
-    
-    /**
-     * Проверява дали продуктът е валиден (с неизтекъл срок)
-     * @return true ако продуктът е валиден, false ако не е
-     */
+
     public boolean isValid() {
-        // Просто връщаме обратното на isExpired
         return !this.isExpired();
     }
-    
-    /**
-     * Задава нова дата на годност на продукта
-     * @param newExpirationDate новата дата на годност
-     */
+
     public void setExpirationDate(LocalDate newExpirationDate) {
         this.expirationDate = newExpirationDate;
     }

@@ -73,31 +73,21 @@ public class Store {
     }
 
     public void addToInventory(Stoka stoka) {
-        // Check if we already have this item in inventory
         if (this.inventory.containsKey(stoka)) {
-            // Get current quantity
             double oldQuantity = this.inventory.get(stoka);
-            // Add 1 to it
             double newQuantity = oldQuantity + 1;
-            // Update inventory
             this.inventory.put(stoka, newQuantity);
         } else {
-            // This is a new item, add it with quantity 1
             this.inventory.put(stoka, 1.0);
         }
     }
     
     public void addToDeliveredStoka(Stoka stoka) {
-        // Check if we already have this item in delivered stoka
         if (this.deliveredStoka.containsKey(stoka)) {
-            // Get current quantity
             double oldQuantity = this.deliveredStoka.get(stoka);
-            // Add 1 to it
             double newQuantity = oldQuantity + 1;
-            // Update delivered stoka
             this.deliveredStoka.put(stoka, newQuantity);
         } else {
-            // This is a new item, add it with quantity 1
             this.deliveredStoka.put(stoka, 1.0);
         }
     }

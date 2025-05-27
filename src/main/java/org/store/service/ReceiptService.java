@@ -16,6 +16,7 @@ public class ReceiptService {
         this.receipt = receipt;
 
         // Проверка дали бележката има поне една стока
+
         if (receipt != null && receipt.getStoka() != null && !receipt.getStoka().isEmpty()) {
             receiptCounter.incrementAndGet();
         } else {

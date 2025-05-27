@@ -99,7 +99,7 @@ public class NonFoodStokaService {
     
     /**
      * Сортира нехранителни стоки по марж на печалба
-     * @param nonFoodStokaList списък с нехранителни стоки
+
      * @return сортиран списък
      */
     public List<NonFoodStoka> sortByProfitMargin(List<NonFoodStoka> nonFoodStokaList) {
@@ -116,7 +116,7 @@ public class NonFoodStokaService {
     
     /**
      * Обновява цена на нехранителна стока, базирана на процент на печалба
-     * @param nonFoodStoka нехранителна стока
+
      * @param targetProfitMargin целеви процент на печалба
      * @return стоката с обновена цена
      */
@@ -138,7 +138,7 @@ public class NonFoodStokaService {
     
     /**
      * Проверява дали нехранителната стока има печалба
-     * @param nonFoodStoka нехранителна стока
+
      * @return true ако има печалба, false в противен случай
      */
     public boolean isProfitable(NonFoodStoka nonFoodStoka) {

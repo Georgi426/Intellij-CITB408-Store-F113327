@@ -51,13 +51,10 @@ public class StoreService {
      * @return true ако срокът е валиден, false ако не е
      */
     public boolean validateAndFixExpirationDate(Stoka stoka) {
-        // Вземаме днешната дата
         LocalDate today = LocalDate.now();
 
-        // Вземаме срока на годност на стоката
         LocalDate expirationDate = stoka.getExpirationDate();
 
-        // Проверяваме дали срокът е в бъдещето
         if (expirationDate.isBefore(today) || expirationDate.isEqual(today)) {
             System.out.println("ГРЕШКА: Стоката " + stoka.getName() + " е с невалиден срок на годност!");
             System.out.println("Срок на годност: " + expirationDate);

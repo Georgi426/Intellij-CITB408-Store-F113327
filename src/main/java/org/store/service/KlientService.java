@@ -13,8 +13,6 @@ public class KlientService {
     
     /**
      * Добавя пари към баланса на клиента
-     * @param klient клиент
-     * @param amount сума за добавяне
      * @return обновен баланс
      */
     public BigDecimal addMoney(Klient klient, BigDecimal amount) {
@@ -31,8 +29,7 @@ public class KlientService {
     }
     
     /**
-     * Изчислява общата стойност на количката на клиента
-     * @param klient клиент
+     * Изчислява общата стойност на количката на клиент
      * @return общата стойност
      */
     public BigDecimal calculateCartTotal(Klient klient) {
@@ -54,7 +51,6 @@ public class KlientService {
     
     /**
      * Проверява дали клиентът има достатъчно средства за покупка
-     * @param klient клиент
      * @return true ако има достатъчно средства, false в противен случай
      */
     public boolean hasEnoughFunds(Klient klient) {
@@ -64,7 +60,6 @@ public class KlientService {
     
     /**
      * Премахва стока от количката на клиента
-     * @param klient клиент
      * @param stoka стока за премахване
      * @return true ако стоката е премахната успешно, false в противен случай
      */
@@ -81,9 +76,7 @@ public class KlientService {
     
     /**
      * Обновява количеството на стока в количката
-     * @param klient клиент
      * @param stoka стока за обновяване
-     * @param newQuantity ново количество
      * @return true ако количеството е обновено успешно, false в противен случай
      */
     public boolean updateCartItemQuantity(Klient klient, Stoka stoka, double newQuantity) {
@@ -103,7 +96,7 @@ public class KlientService {
     
     /**
      * Връща списък със стоки в количката
-     * @param klient клиент
+
      * @return списък със стоки
      */
     public List<Stoka> getCartItems(Klient klient) {
@@ -112,7 +105,7 @@ public class KlientService {
     
     /**
      * Проверява дали количката на клиента е празна
-     * @param klient клиент
+
      * @return true ако количката е празна, false в противен случай
      */
     public boolean isCartEmpty(Klient klient) {
@@ -121,7 +114,7 @@ public class KlientService {
     
     /**
      * Изчислява общото количество стоки в количката
-     * @param klient клиент
+
      * @return общо количество стоки
      */
     public double getTotalItemCount(Klient klient) {
@@ -136,8 +129,6 @@ public class KlientService {
     
     /**
      * Копира количката на един клиент в друг клиент
-     * @param source източник
-     * @param target цел
      */
     public void copyCart(Klient source, Klient target) {
         Map<Stoka, Double> sourceCart = source.getCart();
@@ -149,7 +140,7 @@ public class KlientService {
     
     /**
      * Връща стоката с най-висока стойност в количката на клиента
-     * @param klient клиент
+
      * @return стока с най-висока стойност или null ако количката е празна
      */
     public Stoka getMostExpensiveItem(Klient klient) {
