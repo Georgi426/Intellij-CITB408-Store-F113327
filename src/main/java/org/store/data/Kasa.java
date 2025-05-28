@@ -10,18 +10,22 @@ public class Kasa {
     }
 
     public Cashier getCashier() {
+
         return cashier;
     }
 
     public void setCashier(Cashier cashier) {
+
         this.cashier = cashier;
     }
 
     public Store getStore() {
+
         return store;
     }
 
     public void setStore(Store store) {
+
         this.store = store;
     }
 }

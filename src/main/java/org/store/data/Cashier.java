@@ -17,23 +17,18 @@ public class Cashier {
     }
 
     public String getId() {
+
         return id;
     }
 
     public String getName() {
+
         return name;
     }
 
     public BigDecimal getMonthlySalary() {
+
         return monthlySalary;
     }
 
-    @Override
-    public String toString() {
-        return "Cashier { " +
-                "id = '" + id + '\'' +
-                ", name = '" + name + '\'' +
-                ", monthlySalary = " + monthlySalary +
-                " }";
-    }
 }
