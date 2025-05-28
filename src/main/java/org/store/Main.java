@@ -70,7 +70,7 @@ public class Main {
         }
         System.out.println("Доставени са по 5 броя от всеки продукт.");
 
-        // Създаваме клиент с 100 лв.
+        // Създаваме клиент с 1000 лв.
 
         Klient klient = new Klient(new BigDecimal(1000));
         System.out.println("\nДобавяне на стоки в количката (въведете 0 за край):");

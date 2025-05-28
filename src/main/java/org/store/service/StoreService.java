@@ -44,12 +44,11 @@ public class StoreService {
         return updatedPrice.setScale(2, BigDecimal.ROUND_UP);
     }
 
-    /**
-     * Проверява и коригира срока на годност на стоката преди доставка
-     *
-     * @param stoka стоката за проверка
-     * @return true ако срокът е валиден, false ако не е
-     */
+
+//      Проверява и коригира срока на годност на стоката преди доставка
+//      stoka стоката за проверка
+//      return true ако срокът е валиден, false ако не е
+
     public boolean validateAndFixExpirationDate(Stoka stoka) {
         LocalDate today = LocalDate.now();
 
@@ -61,6 +60,7 @@ public class StoreService {
             System.out.println("Днешна дата: " + today);
 
             // Задаваме нов срок на годност - 30 дни напред
+
             LocalDate newExpirationDate = today.plusDays(30);
             stoka.setExpirationDate(newExpirationDate);
 
