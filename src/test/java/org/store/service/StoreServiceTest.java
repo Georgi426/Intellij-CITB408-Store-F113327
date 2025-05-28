@@ -42,19 +42,22 @@ class StoreServiceTest {
 //        assertEquals(new BigDecimal("17.25"), newPriceNonFood); // 15 + 15%
 //    }
 
+    //Проверява дали методът открива стока с изтекъл срок на годност и го коригира с нова дата. За валидна стока с бъдеща дата се очаква да я приеме без промяна.
     @Test
     void testValidateAndFixExpirationDate() {
-        // Expired product
+
         Stoka expired = new Stoka("003", "Стар продукт", new BigDecimal("10"), new BigDecimal("12"), LocalDate.now().minusDays(1), StokaCategory.FOOD);
         boolean valid = storeService.validateAndFixExpirationDate(expired);
         assertFalse(valid);
         assertTrue(expired.getExpirationDate().isAfter(LocalDate.now()));
 
-        // Valid product
+
         boolean valid2 = storeService.validateAndFixExpirationDate(stokaFood);
         assertTrue(valid2);
     }
 
+
+    //Създава карта с продадени стоки и добавя информацията в магазина чрез addSoldStoka(). След това проверява дали правилното количество е записано.
     @Test
     void testAddSoldStoka() {
         Map<Stoka, Double> soldMap = new HashMap<>();
@@ -64,6 +67,8 @@ class StoreServiceTest {
         assertEquals(3.0, store.getSoldStoka().get(stokaFood));
     }
 
+
+    //Симулира добавяне на продукти в инвентара и после премахва част от тях чрез removeFromInventory(). Уверява се, че остатъчното количество е коректно.
     @Test
     void testRemoveFromInventory() {
         // Add items first

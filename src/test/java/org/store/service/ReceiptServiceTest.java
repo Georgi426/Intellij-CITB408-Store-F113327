@@ -40,7 +40,7 @@ class ReceiptServiceTest {
     }
 
 
-
+//  Проверява дали методът връща 0.00, когато няма стоки в касовата бележка. Уверява се, че не се начислява цена без артикули.
     @Test
     void testCalculateTotalPrice_EmptyMap() {
         Receipt emptyReceipt = new Receipt(2, cashier, new HashMap<>(), LocalDateTime.now());
@@ -49,6 +49,7 @@ class ReceiptServiceTest {
         assertEquals(new BigDecimal("0.00"), service.calculateTotalPrice());
     }
 
+    //Тества дали методът работи правилно и при null вместо карта със стоки. Очаква се отново да върне 0.00 без грешка.
     @Test
     void testCalculateTotalPrice_NullStokaMap() {
         Receipt nullStokaReceipt = new Receipt(3, cashier, null, LocalDateTime.now());
@@ -58,7 +59,7 @@ class ReceiptServiceTest {
     }
 
 
-
+    //Проверява дали при празна касова бележка се връща съобщение с „ГРЕШКА“. Така се предупреждава потребителят за липсващи артикули.
     @Test
     void testFormattedReceipt_WithEmptyItems_ReturnsWarning() {
         Receipt emptyReceipt = new Receipt(4, cashier, new HashMap<>(), LocalDateTime.now());

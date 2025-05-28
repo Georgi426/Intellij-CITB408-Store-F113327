@@ -23,6 +23,8 @@ class StokaServiceTest {
     private Stoka stokaNonFood;
     private List<Stoka> stokaList;
 
+
+
     @BeforeEach
     void setUp() {
         // Initialize service
@@ -45,7 +47,7 @@ class StokaServiceTest {
                                 new BigDecimal("4.00"), new BigDecimal("6.50"), 
                                 null, StokaCategory.NONFOOD);
         
-        // Create list of products
+
         stokaList = new ArrayList<>();
         stokaList.add(stokaExpiringSoon);
         stokaList.add(stokaExpired);
