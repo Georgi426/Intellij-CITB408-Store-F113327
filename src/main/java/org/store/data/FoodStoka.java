@@ -14,6 +14,7 @@ public class FoodStoka extends Stoka {
         super(id, name, deliveryPrice, price, expirationDate, StokaCategory.FOOD);
     }
 
-    // Можеш да добавиш допълнителни методи или да override-неш някой от базовия клас, ако е нужно
-    // Например: проверка на срока на годност (вече имаш такъв метод в Stoka)
+    // Може да добавя допълнителни методи или да override-на някой от
+    // базовия клас, ако е нужно
+
 }
