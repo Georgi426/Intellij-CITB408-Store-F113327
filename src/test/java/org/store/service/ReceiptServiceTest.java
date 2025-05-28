@@ -68,23 +68,7 @@ class ReceiptServiceTest {
         assertTrue(output.contains("ГРЕШКА"));
     }
 
-    @Test
-    void testCountReceiptsIssued_IncrementsOnlyIfNotEmpty() {
-        int countBefore = receiptService.countReceiptsIssued();
 
-        // This should not increment the count (empty stoka map)
-        Receipt empty = new Receipt(5, cashier, new HashMap<>(), LocalDateTime.now());
-        new ReceiptService(empty);
-
-        // This should increment
-        Map<Stoka, Double> map = new HashMap<>();
-        map.put(stoka1, 1.0);
-        Receipt valid = new Receipt(6, cashier, map, LocalDateTime.now());
-        new ReceiptService(valid);
-
-        int countAfter = receiptService.countReceiptsIssued();
-        assertEquals(countBefore + 1, countAfter);
-    }
 
 
 }

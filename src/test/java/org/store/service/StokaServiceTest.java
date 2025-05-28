@@ -55,28 +55,27 @@ class StokaServiceTest {
 
     @Test
     void isNearExpiration_ShouldReturnTrue_WhenProductIsCloseToExpiring() {
-        // When
+
         boolean result = stokaService.isNearExpiration(stokaExpiringSoon, 5);
         
-        // Then
+
         assertTrue(result);
     }
 
     @Test
     void isNearExpiration_ShouldReturnFalse_WhenProductIsNotCloseToExpiring() {
-        // When
+
         boolean result = stokaService.isNearExpiration(stokaFresh, 5);
         
-        // Then
+
         assertFalse(result);
     }
 
     @Test
     void isNearExpiration_ShouldReturnFalse_WhenProductIsNonFood() {
-        // When
+
         boolean result = stokaService.isNearExpiration(stokaNonFood, 5);
-        
-        // Then
+
         assertFalse(result);
     }
 
@@ -84,22 +83,22 @@ class StokaServiceTest {
 
     @Test
     void calculatePriceWithDiscount_ShouldNotApplyDiscount_WhenProductIsNotNearExpiration() {
-        // Given
+
         BigDecimal originalPrice = stokaFresh.getPrice(); // 8.90
         
-        // When
+
         BigDecimal result = stokaService.calculatePriceWithDiscount(stokaFresh, 5, 10.0);
         
-        // Then
+
         assertEquals(originalPrice, result);
     }
 
     @Test
     void filterByCategory_ShouldReturnOnlyFoodItems() {
-        // When
+
         List<Stoka> result = stokaService.filterByCategory(stokaList, StokaCategory.FOOD);
         
-        // Then
+
         assertEquals(3, result.size());
         assertTrue(result.contains(stokaExpiringSoon));
         assertTrue(result.contains(stokaExpired));
@@ -109,30 +108,30 @@ class StokaServiceTest {
 
     @Test
     void filterByCategory_ShouldReturnOnlyNonFoodItems() {
-        // When
+
         List<Stoka> result = stokaService.filterByCategory(stokaList, StokaCategory.NONFOOD);
         
-        // Then
+
         assertEquals(1, result.size());
         assertTrue(result.contains(stokaNonFood));
     }
 
 //    @Test
 //    void filterExpiredItems_ShouldReturnOnlyExpiredItems() {
-//        // When
+//
 //        List<Stoka> result = stokaService.filterExpiredItems(stokaList);
 //
-//        // Then
+//
 //        assertEquals(1, result.size());
 //        assertTrue(result.contains(stokaExpired));
 //    }
 
     @Test
     void sortByPrice_ShouldReturnItemsSortedByPriceAscending() {
-        // When
+
         List<Stoka> result = stokaService.sortByPrice(stokaList);
         
-        // Then
+
         assertEquals(4, result.size());
         assertEquals(stokaExpired, result.get(0)); // 2.80
         assertEquals(stokaExpiringSoon, result.get(1)); // 3.50
