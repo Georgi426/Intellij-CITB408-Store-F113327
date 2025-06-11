@@ -47,11 +47,4 @@ public class Klient {
         cart.clear();
     }
 
-    @Override
-    public String toString() {
-        return "Klient{" +
-                "cart=" + cart +
-                ", money=" + money +
-                '}';
-    }
 }

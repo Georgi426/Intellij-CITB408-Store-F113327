@@ -19,6 +19,7 @@ public class Receipt {
     }
 
     public Receipt(int i, Cashier cashier, Map<Stoka, Double> stoki, LocalDateTime now) {
+
     }
 
     public String getSerialNumber() {

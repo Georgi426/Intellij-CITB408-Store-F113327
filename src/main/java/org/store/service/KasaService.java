@@ -20,31 +20,31 @@ public class KasaService {
     }
 
     public Receipt checkout(Klient klient) {
-        // Проверка за наличности
+
         validateStokaAvailability(klient.getCart());
 
-        // Изчисляване на общата цена
+
         BigDecimal totalPrice = calculateTotalPrice(klient.getCart());
 
-        // Проверка за достатъчно пари
+
         if (klient.getMoney().compareTo(totalPrice) < 0) {
             throw new NotEnoughMoneyException("Недостатъчно средства. Необходими: " + totalPrice + " лв., Налични: " + klient.getMoney() + " лв.");
         }
 
-        // Генериране на касов номер и бележка
+
         String serialNumber = generateReceiptNumber();
         Cashier cashier = this.kasa.getCashier();
         LocalDate issueDate = LocalDate.now();
         Receipt receipt = new Receipt(serialNumber, cashier, issueDate, new HashMap<>(klient.getCart()));
 
-        // Актуализация на склада и продадените артикули
+
         this.storeService.removeFromInventory(klient.getCart());
         this.storeService.addSoldStoka(klient.getCart());
 
-        // Касата приема парите
+
         klient.subtractMoney(totalPrice);
 
-        // Изчистване на количката след покупка
+
         klient.clearCart();
 
         return receipt;
