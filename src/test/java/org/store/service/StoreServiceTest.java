@@ -71,7 +71,7 @@ class StoreServiceTest {
     //Симулира добавяне на продукти в инвентара и после премахва част от тях чрез removeFromInventory(). Уверява се, че остатъчното количество е коректно.
     @Test
     void testRemoveFromInventory() {
-        // Add items first
+
         store.addToInventory(stokaFood);
         store.addToInventory(stokaFood);
         store.addToInventory(stokaFood);

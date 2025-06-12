@@ -38,7 +38,7 @@ public class Main {
         Store store = new Store(15, 10.0, marginByCategory);
         StoreService storeService = new StoreService(store);
 
-        // Задаваме срок на годност 15 май 2024 г. за нашите продукти
+        // Задаваме срок на годност 15 май 2024 г. за нашите продукти  
 
         LocalDate expDate = LocalDate.of(2024, 5, 15);
 

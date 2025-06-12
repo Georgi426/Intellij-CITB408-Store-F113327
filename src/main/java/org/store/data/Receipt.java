@@ -11,7 +11,7 @@ public class Receipt {
     private LocalDate issueDate;
     private Map<Stoka, Double> stoka;
 
-    public Receipt(String serialNumber, Cashier cashier, LocalDate issueDate, Map<Stoka, Double> stoka) {
+    public Receipt(String serialNumber, Cashier cashier, LocalDate issueDate  , Map<Stoka, Double> stoka) {
         this.serialNumber = serialNumber;
         this.cashier = cashier;
         this.issueDate = issueDate;
