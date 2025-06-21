@@ -15,7 +15,7 @@ public class Klient {
     }
 
     public Map<Stoka, Double> getCart() {
-// zashto съм сложил double
+
         return cart;
     }
 

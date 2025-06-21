@@ -45,9 +45,7 @@ public class StoreService {
     }
 
 
-//      Проверява и коригира срока на годност на стоката преди доставка
-//      stoka стоката за проверка
-//      return true ако срокът е валиден, false ако не е
+
 
     public boolean validateAndFixExpirationDate(Stoka stoka) {
         LocalDate today = LocalDate.now();
@@ -59,7 +57,7 @@ public class StoreService {
             System.out.println("Срок на годност: " + expirationDate);
             System.out.println("Днешна дата: " + today);
 
-            // Задаваме нов срок на годност - 30 дни напред
+
 
             LocalDate newExpirationDate = today.plusDays(30);
             stoka.setExpirationDate(newExpirationDate);
@@ -68,34 +66,34 @@ public class StoreService {
             return false;
         }
 
-        // Срокът е валиден
+
         return true;
     }
 
     public void deliverStoka(Stoka stoka) {
-        // Първо проверяваме и коригираме срока на годност
+
         boolean isExpirationDateValid = validateAndFixExpirationDate(stoka);
 
         if (!isExpirationDateValid) {
             System.out.println("Внимание: Срокът на годност на стоката беше автоматично коригиран!");
         }
 
-        // Проверяваме дали стоката е валидна след корекцията
+
         if (stoka.isExpired()) {
             System.out.println("КРИТИЧНА ГРЕШКА: Стоката е с изтекъл срок и не може да бъде доставена!");
             return;
         }
 
-        // First we need to calculate the new price with margin
+
         BigDecimal priceWithMargin = this.calculatePriceWithMargin(stoka);
 
-        // Now we update the price of the item
+
         stoka.setPrice(priceWithMargin);
 
-        // Now we need to add the item to the store's delivered items list
+
         this.store.addToDeliveredStoka(stoka);
 
-        // And also add it to the store's inventory
+
         this.store.addToInventory(stoka);
 
 //        // Let's print something so we know it worked!
@@ -134,7 +132,7 @@ public class StoreService {
             result = result.add(entry.getKey().getDeliveryPrice());
         }
 
-        // Return the final result
+
         return result;
     }
 
@@ -149,40 +147,40 @@ public class StoreService {
     }
 
     public BigDecimal calculateStokaSoldRevenue() {
-        // Initialize the result with zero
+
         BigDecimal result = new BigDecimal("0");
 
-        // Get all sold items
+
         Map<Stoka, Double> allSoldItems = this.store.getSoldStoka();
 
-        // Loop through each item one by one
+
         for (Map.Entry<Stoka, Double> entry : allSoldItems.entrySet()) {
-            // Get the current item
+
             Stoka currentItem = entry.getKey();
 
-            // Get how many of this item were sold
+
             Double howManySold = entry.getValue();
 
-            // Convert the quantity to BigDecimal so we can do math
+
             BigDecimal quantityAsBigDecimal = new BigDecimal(howManySold.toString());
 
-            // Get the price of the current item
+
             BigDecimal priceOfCurrentItem = currentItem.getPrice();
 
-            // Calculate the total for this item by multiplying price and quantity
+
             BigDecimal totalForThisItem = priceOfCurrentItem.multiply(quantityAsBigDecimal);
 
-            // Add this item's total to our running total
+
             result = result.add(totalForThisItem);
 
-            // Print for debugging
+
             System.out.println("Item: " + currentItem.getName() +
                     ", Quantity: " + howManySold +
                     ", Price: " + priceOfCurrentItem +
                     ", Total: " + totalForThisItem);
         }
 
-        // Return the final result
+
         return result;
     }
 
