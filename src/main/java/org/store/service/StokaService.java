@@ -14,14 +14,11 @@ import java.util.stream.Collectors;
 public class StokaService {
     
 
-//      Проверява дали стоката е близо до изтичане на срока на годност
-//      stoka стоката за проверка
-//      daysThreshold броят дни, под които се счита за близко изтичане
-//      return true ако стоката е близо до изтичане, false в противен случай
+
 
     public boolean isNearExpiration(Stoka stoka, int daysThreshold) {
         if (stoka.getExpirationDate() == null) {
-            return false; // Non-food items don't expire
+            return false;
         }
         
         LocalDate today = LocalDate.now();
@@ -32,11 +29,7 @@ public class StokaService {
     }
     
 
-//      Изчислява цена с отстъпка за стоки, близки до изтичане
-//      stoka стоката за изчисление
-//      daysThreshold броят дни, под които се прилага отстъпка
-//      discountPercent процент отстъпка
-//      return цената след отстъпка или оригиналната цена
+
 
     public BigDecimal calculatePriceWithDiscount(Stoka stoka, int daysThreshold, double discountPercent) {
         if (isNearExpiration(stoka, daysThreshold)) {
@@ -47,10 +40,7 @@ public class StokaService {
     }
     
 
-//      Филтрира списък от стоки по категория
-//      stokaList списък от стоки
-//      category категорията за филтриране
-//      return филтриран списък от стоки
+
 
     public List<Stoka> filterByCategory(List<Stoka> stokaList, StokaCategory category) {
         return stokaList.stream()
@@ -59,9 +49,7 @@ public class StokaService {
     }
     
 
-//       Филтрира списък от стоки, които са изтекли
-//       stokaList списък от стоки
-//       return списък от изтекли стоки
+
 
     public List<Stoka> filterExpiredItems(List<Stoka> stokaList) {
         return stokaList.stream()
@@ -70,9 +58,7 @@ public class StokaService {
     }
     
 
-//      Сортира стоките по цена (възходящо)
-//      stokaList списък от стоки
-//      return сортиран списък от стоки
+
 
 
     public List<Stoka> sortByPrice(List<Stoka> stokaList) {
@@ -81,11 +67,7 @@ public class StokaService {
         return sortedList;
     }
     
-//
-//      Изчислява общата стойност на списък от стоки
-//      stokaQuantityMap карта от стоки и техните количества
-//      return общата стойност на стоките
-//
+
     public BigDecimal calculateTotalValue(Map<Stoka, Double> stokaQuantityMap) {
         BigDecimal total = BigDecimal.ZERO;
         
@@ -101,10 +83,7 @@ public class StokaService {
     }
     
 
-//      Обновява цена на стока с нова стойност
-//      stoka стоката за обновяване
-//      newPrice новата цена
-//      return обновената стока
+
 
     public Stoka updatePrice(Stoka stoka, BigDecimal newPrice) {
         if (newPrice.compareTo(BigDecimal.ZERO) <= 0) {
@@ -115,10 +94,7 @@ public class StokaService {
     }
     
 
-//      Обновява цена на доставка на стока
-//      stoka стоката за обновяване
-//      newDeliveryPrice новата цена на доставка
-//      return обновената стока
+
 
     public Stoka updateDeliveryPrice(Stoka stoka, BigDecimal newDeliveryPrice) {
         if (newDeliveryPrice.compareTo(BigDecimal.ZERO) < 0) {
@@ -128,15 +104,11 @@ public class StokaService {
         return stoka;
     }
     
-//
-//      Удължава срока на годност на стоката с определен брой дни
-//      stoka стоката за обновяване
-//      days брой дни за удължаване
-//      return обновената стока
+
 
     public Stoka extendExpirationDate(Stoka stoka, int days) {
         if (stoka.getExpirationDate() == null) {
-            return stoka; // Non-food items don't have expiration dates
+            return stoka;
         }
         
         if (days <= 0) {

@@ -38,12 +38,12 @@ public class Main {
         Store store = new Store(15, 10.0, marginByCategory);
         StoreService storeService = new StoreService(store);
 
-        // Задаваме срок на годност 15 май 2024 г. за нашите продукти  
+
 
         LocalDate expDate = LocalDate.of(2024, 5, 15);
 
 
-        // Проверяваме дали срокът на годност е валиден (в бъдещето)
+
 
         LocalDate currentDate = LocalDate.now();
         if (expDate.isBefore(currentDate)) {
@@ -61,7 +61,7 @@ public class Main {
         products.add(new Stoka("004", "Химикалка", new BigDecimal(1), new BigDecimal(2), expDate, StokaCategory.NONFOOD));
         products.add(new Stoka("005", "Бисквити", new BigDecimal(3), new BigDecimal(4), expDate, StokaCategory.FOOD));
 
-        // Зареждаме склада с по 5 броя от всеки продукт (за да има наличности)
+
 
         for (Stoka product : products) {
             for (int i = 0; i < 5; i++) {
@@ -70,7 +70,7 @@ public class Main {
         }
         System.out.println("Доставени са по 5 броя от всеки продукт.");
 
-        // Създаваме клиент с 1000 лв.
+
 
         Klient klient = new Klient(new BigDecimal(1000));
         System.out.println("\nДобавяне на стоки в количката (въведете 0 за край):");
